@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Screw - سكرو</title>
+  <link rel="stylesheet" href="scoreboard.css" />
+  <link rel="icon" href="skrew logo.png" type="image/png" />
+</head>
+<body>
+    
+    <header>
+        <h1>Skrew - سكرو</h1>
+        <img src="skrew logo.png" alt="logo" id="logo">
+        <p id="author">By <a href="https://instagram.com/luca.tadross">Luca Tadros</a></p>
+    </header>
+    <main>
+        <!-- Scoreboard content starts here -->
+        <div class="card">
+            <label for="playerCount">Number of players:</label>
+            <input type="number" id="playerCount" min="1" />
+            <button id="createNamesBtn">Next</button>
+        </div>
+
+        <div id="nameInputs" class="card hidden">
+            <h2>Enter Player Names</h2>
+            <div id="namesContainer"></div>
+            <button id="generateTableBtn">Generate Table</button>
+        </div>
+
+        <div id="scoreTable" class="card"></div>
+        <!-- Place this inside <main> where you want the podium and scoreboard side by side -->
+        <div id="scoreboard-podium-wrapper">
+          <div id="podium"></div>
+          <div id="scoreboard"></div>
+        </div>
+        <button id="exportPdfBtn" class="export-btn">Export results as PDF</button>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="scoreboard.js"></script>
+</body>
+</html>
