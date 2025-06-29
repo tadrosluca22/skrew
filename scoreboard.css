@@ -371,6 +371,7 @@ tr:last-child td[colspan] {
   header {
     height: 100px;
     padding: 6px 4px;
+    width: 100%;
   }
   header h1 {
     font-size: 1.1em;
@@ -386,6 +387,7 @@ tr:last-child td[colspan] {
   .card {
     padding: 10px 6px;
     margin-bottom: 12px;
+    width: 100%;
   }
   input[type="number"], input[type="text"] {
     font-size: 0.95em;
@@ -401,10 +403,13 @@ tr:last-child td[colspan] {
     flex-direction: column;
     gap: 10px;
     margin-top: 10px;
+    align-items: stretch;
   }
   #podium, #scoreboard {
     min-height: 90px;
     padding: 10px 4px;
+    width: 100%;   /* <-- Make each take full width */
+    box-sizing: border-box;
   }
   .podium-row {
     gap: 6px;
