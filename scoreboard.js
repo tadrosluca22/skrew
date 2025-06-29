@@ -7,8 +7,8 @@ const $ = (id) => document.getElementById(id);
 // Create player name inputs
 function createNameInputs() {
   const count = parseInt($('playerCount').value);
-  if (isNaN(count) || count < 1) {
-    showPopup('Please enter a valid number of players (at least 1)');
+  if (isNaN(count) || count < 3) { // changed from 1 to 3
+    showPopup('Please enter a valid number of players (at least 3)');
     return;
   }
   const container = $('namesContainer');
@@ -30,16 +30,58 @@ function createNameInputs() {
 function generateTable() {
   players = [];
   const count = parseInt($('playerCount').value);
+  let missingNames = [];
   for (let i = 0; i < count; i++) {
     const name = $(`playerName${i}`).value.trim();
-    if (!name) {
-      showPopup('Please fill in all player names.');
-      return;
-    }
+    if (!name) missingNames.push(i);
     players.push(name);
   }
   roundMultiplier = 1;
 
+  // If any names are missing, prompt the user
+  if (missingNames.length > 0) {
+    showNameNumberPopup(missingNames, count);
+    return;
+  }
+
+  renderTableAndScoreboard();
+}
+
+function showNameNumberPopup(missingNames, count) {
+  // Remove existing popup if present
+  const oldPopup = document.getElementById('custom-popup');
+  if (oldPopup) oldPopup.remove();
+
+  // Create popup container
+  const popup = document.createElement('div');
+  popup.id = 'custom-popup';
+  popup.innerHTML = `
+    <div class="popup-content">
+      <span class="popup-message">Name players by number (P1, P2, P3, ...)?</span>
+      <div style="margin-top:18px;">
+        <button id="popup-yes">Yes</button>
+        <button id="popup-no">No</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(popup);
+
+  document.getElementById('popup-yes').onclick = () => {
+    // Fill missing names with placeholders
+    for (let i of missingNames) {
+      players[i] = `P${i + 1}`;
+      $(`playerName${i}`).value = `P${i + 1}`;
+    }
+    popup.remove();
+    renderTableAndScoreboard();
+  };
+  document.getElementById('popup-no').onclick = () => {
+    popup.remove();
+    showPopup('Please fill in all player names.');
+  };
+}
+
+function renderTableAndScoreboard() {
   let html = `<div class="table-wrapper"><table id="mainTable"><thead><tr>`;
   html += `<th>Player</th>`;
   for (let r = 1; r <= 5; r++) html += `<th>Round ${r}</th>`;
@@ -165,7 +207,6 @@ function showPopup(message) {
 
   // Close on button click
   popup.querySelector('.popup-close').onclick = () => popup.remove();
-  // Remove background click and auto-close for manual close only
 }
 
 // Attach event listeners for initial controls
@@ -197,6 +238,22 @@ window.addEventListener('DOMContentLoaded', () => {
     pdf.text('Skrew Results', pageWidth / 2, 40, { align: 'center' });
     pdf.addImage(imgData, 'PNG', 20, 60, imgWidth, imgHeight);
 
-    pdf.save('skrew-results.pdf');
+    // Get winner's name for filename
+    let winner = '';
+    if (players && players.length > 0) {
+      // Find the player with the lowest total (winner)
+      let minScore = Infinity, winnerIdx = 0;
+      for (let i = 0; i < players.length; i++) {
+        const score = parseInt(document.getElementById(`total-${i}`).value) || 0;
+        if (score < minScore) {
+          minScore = score;
+          winnerIdx = i;
+        }
+      }
+      winner = players[winnerIdx] ? players[winnerIdx].replace(/[^a-zA-Z0-9_-]/g, '') : 'winner';
+    }
+    const fileName = `skrew-${winner || 'winner'}.pdf`;
+
+    pdf.save(fileName);
   });
 });
