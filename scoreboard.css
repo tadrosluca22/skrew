@@ -408,7 +408,7 @@ tr:last-child td[colspan] {
   #podium, #scoreboard {
     min-height: 90px;
     padding: 10px 4px;
-    width: 100%;   /* <-- Make each take full width */
+    width: 100%;
     box-sizing: border-box;
   }
   .podium-row {
@@ -447,16 +447,46 @@ tr:last-child td[colspan] {
     font-size: 0.85em;
     padding: 2px 4px;
     margin: 10px auto;
+    background-color: #ede7f6;
+  }
+
+  #custom-popup, .popup-overlay {
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding-top: 40px;
+    position: fixed !important;
+    left: 0; top: 0; right: 0; bottom: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(58, 27, 113, 0.45) !important;
+    z-index: 3000 !important;
+    display: flex !important;
+  }
+  #custom-popup .popup-content, .popup-message {
+    max-width: 95vw !important;
+    min-width: 0 !important;
+    width: 95vw !important;
+    font-size: 0.75em !important; /* Smaller font size */
+    padding: 14px 6px 14px 6px !important;
+    border-radius: 12px !important;
+    box-sizing: border-box;
+    word-break: break-word;
+  }
+  #custom-popup .popup-close, .popup-message .close-btn {
+    top: 8px !important;
+    right: 10px !important;
+    font-size: 1.4em !important;
   }
 }
+
+/* Only one #author definition outside media query */
 #author {
   text-align: center;
   margin-top: 12px;
   font-size: 0.9em;
   color: #3B1B71;
   text-decoration: none;
-  background-color: #ccc;
-  font-size: 15px;
+  background-color: #ede7f6;
   padding: 4px 8px;
   border-radius: 6px;
   width: fit-content;
