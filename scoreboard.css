@@ -1,12 +1,17 @@
 /* === Base Styles === */
+html {
+  font-size: 15px; /* Slightly smaller base */
+}
+
 body {
   font-family: 'Arial', sans-serif;
   background: url("skrew bg.png") no-repeat center center fixed;
   background-size: cover;
   margin: 0;
-  padding: 20px;
-  margin-top: 170px;
+  padding: 8px;
+  margin-top: 110px;
   color: #1A1742;
+  font-size: 13px; /* Slightly smaller for all content */
 }
 
 header {
@@ -19,12 +24,12 @@ header {
   z-index: 1000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   left: 0;
-  height: 160px;
+  height: 100px;
 }
 
 header h1 {
   color: #fff;
-  font-size: 24px;
+  font-size: 17px;
   margin: 0;
 }
 
@@ -45,8 +50,20 @@ header nav a:hover {
   font-size: 20px;
 }
 
+#author {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 2000;
+  background-color: #ede7f6;
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(32,46,118,0.05);
+  font-size: 0.9em;
+}
+
 #logo {
-  width: 100px;
+  width: 70px;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -76,17 +93,17 @@ header nav a:hover {
 }
 
 main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 30px 0 0 0;
+  max-width: 99vw;
+  padding: 10px 0 0 0;
 }
 
 .card {
   background-color: #3B1B71;
   border-radius: 10px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  padding: 24px 32px;
-  margin-bottom: 24px;
+  padding: 12px 10px;
+  margin-bottom: 12px;
+  font-size: 1em;
   text-align: center;
 }
 
@@ -97,11 +114,11 @@ main {
 }
 
 input[type="number"], input[type="text"] {
-  padding: 6px 12px;
+  font-size: 0.97em;
+  padding: 4px 7px;
+  margin: 4px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin: 8px 0;
-  font-size: 1em;
   background: #F3F3FB;
   color: #1A1742;
 }
@@ -111,10 +128,10 @@ button {
   color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 8px 18px;
-  font-size: 1em;
+  padding: 7px 14px;
+  font-size: 0.97em;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 7px;
   transition: background 0.2s;
 }
 
@@ -130,8 +147,8 @@ button:hover {
 #scoreboard-podium-wrapper {
   display: flex;
   justify-content: space-between;
-  gap: 32px;
-  margin-top: 32px;
+  gap: 12px;
+  margin-top: 12px;
 }
 
 #podium, #scoreboard {
@@ -139,8 +156,8 @@ button:hover {
   background-color: #3B1B71;
   border-radius: 10px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  padding: 24px;
-  min-height: 200px;
+  padding: 10px 4px;
+  min-height: 120px;
 }
 
 #scoreboard h3 {
@@ -159,8 +176,8 @@ table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  margin-top: 20px;
-  font-size: 1em;
+  margin-top: 8px;
+  font-size: 0.97em;
   background-color: #F3F3FB;
   border-radius: 10px;
   overflow: hidden;
@@ -176,7 +193,7 @@ th {
 }
 
 td {
-  padding: 12px;
+  padding: 7px;
   border-bottom: 1px solid #3B1B71;
   text-align: center;
   vertical-align: middle;
@@ -287,19 +304,24 @@ tr:last-child td[colspan] {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
 }
 
 .popup-message {
-  background: #ede7f6; /* light purple */
-  color: #3B1B71;
+  max-width: 95vw;
+  min-width: 260px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  font-size: 1.08em;
   border-radius: 16px;
+  box-sizing: border-box;
+  word-break: break-word;
+  background: #ede7f6;
+  color: #3B1B71;
   border: 2px solid #523DFF;
   box-shadow: 0 8px 32px rgba(82, 61, 255, 0.18), 0 2px 8px rgba(32, 46, 118, 0.10);
-  padding: 36px 44px 32px 44px;
-  max-width: 92vw;
-  min-width: 280px;
-  text-align: center;
-  font-size: 1.15em;
+  padding: 32px 24px 28px 24px;
   position: relative;
   animation: popup-in 0.25s cubic-bezier(.4,2,.6,1) both;
 }
@@ -307,18 +329,27 @@ tr:last-child td[colspan] {
 .popup-message .close-btn {
   position: absolute;
   top: 14px;
-  right: 18px;
-  background: none;
+  left: 18px;
+  width: 32px;
+  height: 32px;
+  background: #00C6FF;
+  color: #fff;
   border: none;
-  color: #BC2D83;
-  font-size: 1.6em;
+  border-radius: 50%;
+  font-size: 1.4em;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 0;
   line-height: 1;
 }
 
 .popup-message .close-btn:hover {
-  color: #3B1B71;
+  background: #3B1B71;
+  color: #FFC600;
 }
 
 .popup-message button:not(.close-btn) {
@@ -450,28 +481,39 @@ tr:last-child td[colspan] {
     background-color: #ede7f6;
   }
 
+  /* Center all popups in the middle of the screen for all devices */
   #custom-popup, .popup-overlay {
-    align-items: flex-start !important;
-    justify-content: center !important;
-    padding-top: 40px;
     position: fixed !important;
-    left: 0; top: 0; right: 0; bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     width: 100vw !important;
     height: 100vh !important;
     background: rgba(58, 27, 113, 0.45) !important;
     z-index: 3000 !important;
     display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
   }
+
   #custom-popup .popup-content, .popup-message {
-    max-width: 95vw !important;
-    min-width: 0 !important;
-    width: 95vw !important;
-    font-size: 0.75em !important; /* Smaller font size */
-    padding: 14px 6px 14px 6px !important;
-    border-radius: 12px !important;
+    max-width: 95vw;
+    min-width: 260px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    font-size: 1.08em;
+    border-radius: 16px;
     box-sizing: border-box;
     word-break: break-word;
+    background: #ede7f6;
+    color: #3B1B71;
+    border: 2px solid #523DFF;
+    box-shadow: 0 8px 32px rgba(82, 61, 255, 0.18), 0 2px 8px rgba(32, 46, 118, 0.10);
+    padding: 32px 24px 28px 24px;
+    position: relative;
+    animation: popup-in 0.25s cubic-bezier(.4,2,.6,1) both;
   }
+
   #custom-popup .popup-close, .popup-message .close-btn {
     top: 8px !important;
     right: 10px !important;
@@ -496,4 +538,78 @@ tr:last-child td[colspan] {
 #author a {
   color: #3B1B71;
   text-decoration: none;
+}
+
+/* Responsive: always allow horizontal scroll if needed */
+main, #scoreTable, #scoreboard-podium-wrapper, table {
+  overflow-x: auto;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Center all popups in the middle of the screen for all devices */
+#custom-popup, .popup-overlay {
+  position: fixed !important;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(58, 27, 113, 0.45) !important;
+  z-index: 3000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+}
+
+#custom-popup .popup-content, .popup-message {
+  display: block; /* Changed from flex to block */
+  position: relative;
+  max-width: 400px;
+  min-width: 260px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.08em;
+  border-radius: 16px;
+  box-sizing: border-box;
+  word-break: break-word;
+  background: #ede7f6;
+  color: #3B1B71;
+  border: 2px solid #523DFF;
+  box-shadow: 0 8px 32px rgba(82, 61, 255, 0.18), 0 2px 8px rgba(32, 46, 118, 0.10);
+  padding: 32px 24px 28px 24px;
+  animation: popup-in 0.25s cubic-bezier(.4,2,.6,1) both;
+  /* Remove flex-direction and gap */
+}
+
+.popup-message .close-btn, #custom-popup .popup-close {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  width: 32px;
+  height: 32px;
+  background: #00C6FF;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.4em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 0;
+  line-height: 1;
+}
+
+.popup-message .close-btn:hover,
+#custom-popup .popup-close:hover {
+  background: #3B1B71;
+  color: #FFC600;
+}
+
+.popup-message span, #custom-popup .popup-content span {
+  display: block;
+  text-align: center;
 }
