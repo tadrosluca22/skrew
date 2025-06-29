@@ -362,20 +362,86 @@ tr:last-child td[colspan] {
   background: #3B1B71;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+/* --- Mobile Styles --- */
+@media (max-width: 600px) {
+  body {
+    padding: 6px;
+    margin-top: 120px;
+  }
+  header {
+    height: 100px;
+    padding: 6px 4px;
+  }
+  header h1 {
+    font-size: 1.1em;
+  }
+  #logo {
+    width: 60px;
+    padding-top: 2px;
+  }
   main {
-    padding: 10px 0 0 0;
+    padding: 0;
+    max-width: 100vw;
+  }
+  .card {
+    padding: 10px 6px;
+    margin-bottom: 12px;
+  }
+  input[type="number"], input[type="text"] {
+    font-size: 0.95em;
+    padding: 4px 7px;
+    margin: 4px 0;
+  }
+  button, .export-btn {
+    font-size: 1em;
+    padding: 8px 12px;
+    margin-top: 8px;
   }
   #scoreboard-podium-wrapper {
     flex-direction: column;
-    gap: 16px;
+    gap: 10px;
+    margin-top: 10px;
   }
   #podium, #scoreboard {
-    min-height: 150px;
+    min-height: 90px;
+    padding: 10px 4px;
+  }
+  .podium-row {
+    gap: 6px;
+    margin-top: 10px;
   }
   .podium-spot {
-    min-width: 70px;
+    min-width: 44px;
+    padding: 4px 2px 6px 2px;
+    font-size: 0.9em;
+  }
+  .podium-spot:nth-child(1) { height: 50px; }
+  .podium-spot:nth-child(2) { height: 70px; }
+  .podium-spot:nth-child(3) { height: 40px; }
+  .podium-rank {
+    font-size: 1.2em;
+  }
+  .podium-name {
+    font-size: 0.95em;
+  }
+  .podium-score {
+    font-size: 0.9em;
+  }
+  table {
+    font-size: 0.95em;
+    margin-top: 8px;
+  }
+  th, td {
+    padding: 6px;
+  }
+  tr:last-child td[colspan] {
+    padding: 8px;
+    font-size: 0.95em;
+  }
+  #author {
+    font-size: 0.85em;
+    padding: 2px 4px;
+    margin: 10px auto;
   }
 }
 #author {
